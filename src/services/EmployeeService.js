@@ -5,7 +5,7 @@ const API_URL = "http://localhost:8080/employees";
 export const getEmployees = async () => {
   try {
     const response = await axios.get(API_URL);
-    return response.data;
+    return response.data.data;
   } catch (error) {
     console.error("Error fetching employees:", error);
     throw error;
@@ -32,10 +32,10 @@ export const updateEmployee = async (employee) => {
   }
 };
 
-export const deleteEmployee = async (employee) => {
+export const deleteEmployee = async (id) => {
   try {
-    const response = await axios.delete(API_URL, { data: employee });
-    return response.data;
+    const response = await axios.delete(`${API_URL}/${id}`);
+    console.log(response);
   } catch (error) {
     console.error("Error deleting employee:", error);
     throw error;
